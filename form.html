@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Submit to Google Sheets</title>
+</head>
+<body>
+
+  <h2>HTML Form → Google Sheets</h2>
+
+  <form id="form">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyzk-Jcm7qOQ4oIgH3zCc-xIrazusTrn7ycwIskaA2YFWkfKbKWgRUJkyU9rCgw1GAC/exec";
+
+    document.getElementById("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const msg = document.getElementById("msg");
+      msg.textContent = "Submitting...";
+
+      const data = {
+        name: e.target.name.value,
+        email: e.target.email.value
+      };
+
+      try {
+        await fetch(scriptURL, {
+          method: "POST",
+          mode: "no-cors",              // REQUIRED for Apps Script
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        msg.textContent = "Submitted Successfully!";
+        e.target.reset();
+
+      } catch (err) {
+        msg.textContent = "Error!";
+        console.log(err);
+      }
+    });
+  </script>
+
+</body>
+</html>
