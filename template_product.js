@@ -1,139 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NexGen Point · Products</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="nav-shell">
-      <div class="nav-brand">
-        <span class="brand-mark">NP</span>
-        <span class="brand-name">NexGen Point</span>
-        
-      </div>
-      <nav class="nav-links">
-        <div class="nav-item products-nav">
-          <button class="nav-link products-toggle" aria-expanded="false">
-            Products
-            <span class="chevron" aria-hidden="true"></span>
-          </button>
-          <div
-            class="product-panel"
-            role="region"
-            aria-label="Featured products"
-            hidden
-          >
-            <div class="product-panel-grid" id="nav-product-grid"></div>
-            <a href="products.html" class="panel-cta">View full catalog</a>
-          </div>
-        </div>
-        <a href="products.html" class="nav-link">Product Page</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-      <button class="menu-toggle" aria-label="Open navigation">
-        <span></span>
-        <span></span>
-      </button>
-    </header>
+/* ------------------------------
+    PRODUCT TEMPLATE SYSTEM
+--------------------------------*/
 
-    <main>
-      <section class="hero product-page-hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Complete Catalog</p>
-          <h1>Every purifier in one place.</h1>
-          <p>
-            Browse the entire Kent-powered lineup with immersive, flip-ready
-            cards that reveal specs, feature highlights, and transparent pricing.
-          </p>
-          <div class="hero-cta">
-            <a href="#products" class="btn primary">Browse Systems</a>
-            <a href="index.html#contact" class="btn ghost">Talk to Experts</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="orbital">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="pulse"></div>
-        </div>
-      </section>
+const PRODUCTS = {
+  "Family Systems": [
+    {
+      img: "images/system1.jpg",
+      title: "PureFlow Family 2000",
+      description: "High-output filtration for everyday home hydration."
+    },
+    {
+      img: "images/system2.jpg",
+      title: "CrystalGuard Home Pro",
+      description: "Mineral-balanced clarity for whole-house supply."
+    }
+  ],
 
-      <section id="products" class="products catalog-page">
-        <div class="section-heading">
-          <p class="eyebrow">Full Lineup</p>
-          <h2>Compare specs before installation.</h2>
-          <p>
-            Each card flips to showcase the story, feature stack, and price for
-            every purifier stored in your product directory.
-          </p>
-        </div>
-        <div
-          class="catalog-brand-sections"
-          id="catalog-brand-sections"
-        ></div>
-      </section>
+  "Family & Friends": [
+    {
+      img: "images/portable1.jpg",
+      title: "AquaGo Portable",
+      description: "Perfect for travel, reunions, and outdoor gatherings."
+    },
+    {
+      img: "images/portable2.jpg",
+      title: "HydraChill Buddy",
+      description: "Smart personal purifier with refill alerts."
+    }
+  ]
+};
 
-      <section id="services" class="services">
-        <div class="section-heading">
-          <p class="eyebrow">What We Deliver</p>
-          <h2>End-to-end filtration expertise.</h2>
-        </div>
-        <div class="service-grid">
-          <div class="service-card">
-            <h3>Water Quality Strategy</h3>
-            <p>Lab-backed audits, mineral profiles, and household sizing.</p>
-          </div>
-          <div class="service-card">
-            <h3>Product Design &amp; IoT</h3>
-            <p>Motion-first apps, cartridge UX, and sensor integrations.</p>
-          </div>
-          <div class="service-card">
-            <h3>Deployment &amp; Care</h3>
-            <p>Installation orchestration, performance analytics, maintenance.</p>
-          </div>
-        </div>
-      </section>
+/* ------------------------------
+    RENDER SECTIONS + CARDS
+--------------------------------*/
 
-      <section id="contact" class="contact">
-        <div class="section-heading">
-          <p class="eyebrow">Contact</p>
-          <h2>Ready for cleaner water?</h2>
-        </div>
-        <form class="contact-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your name" />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" inputmode="tel" placeholder="Your phone number" />
-          </div>
-          <div class="form-group">
-            <label for="message">Project Details</label>
-            <textarea id="message" rows="4" placeholder="Tell us about your launch..."></textarea>
-          </div>
-          <button type="submit" class="btn primary">Submit Number</button>
-        </form>
-      </section>
-    </main>
+function renderProductTemplate() {
+  const container = document.getElementById("brand-preview-sections");
+  container.innerHTML = "";
 
-    <footer class="site-footer">
-      <p>© <span id="year"></span> NexGen Point. All rights reserved.</p>
-    </footer>
+  Object.keys(PRODUCTS).forEach((category) => {
+    const section = document.createElement("div");
+    section.className = "product-category-section";
 
-    <script src="script.js"></script>
-  </body>
-</html>
+    section.innerHTML = `
+      <h3 class="category-title">${category}</h3>
+      <div class="category-grid"></div>
+    `;
 
+    const grid = section.querySelector(".category-grid");
+
+    PRODUCTS[category].forEach((product) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.title}">
+        <h4>${product.title}</h4>
+        <p>${product.description}</p>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    container.appendChild(section);
+  });
+}
+
+renderProductTemplate();
+
+/* ------------------------------
+    NAV PRODUCT GRID (HEADER)
+--------------------------------*/
+
+function renderNavProducts() {
+  const grid = document.getElementById("nav-product-grid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  Object.values(PRODUCTS).flat().slice(0, 4).forEach((product) => {
+    const item = document.createElement("div");
+    item.className = "nav-product-item";
+    item.innerHTML = `
+      <img src="${product.img}" alt="${product.title}">
+      <p>${product.title}</p>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+renderNavProducts();
+
+/* ------------------------------
+    LOGO CAROUSEL (unchanged)
+--------------------------------*/
+
+const LOGOS = ["logo1.png", "logo2.png", "logo3.png"];
+const track = document.getElementById("logo-track");
+if (track) {
+  LOGOS.forEach((logo) => {
+    const img = document.createElement("img");
+    img.src = "logos/" + logo;
+    track.appendChild(img);
+  });
+}
+
+/* ------------------------------
+    YEAR FOOTER
+--------------------------------*/
+document.getElementById("year").textContent = new Date().getFullYear();
 
