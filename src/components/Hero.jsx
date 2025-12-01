@@ -7,7 +7,7 @@ export default function Hero({ variant = "home" }) {
       <div className="hero-copy">
         <p className="eyebrow">{isProduct ? "Complete Catalog" : "Hydration Intelligence"}</p>
         <h1>{isProduct ? "Every purifier in one place." : "Purify every drop with confidence."}</h1>
-        <span className="contactn"> <img src="https://drive.google.com/file/d/1xlcq5LcuSIGxLfeOIeXzxSpehkEIMnBS/view?usp=drive_link" width={65} alt="" /><h3><a href="tel:9852908810">Contact : +91 9852908810 , </a> 9934102710</h3></span>
+        <span className="contactn">  <img src="http://animal.discovery.com/mammals/cheetah/pictures/cheetah-picture.jpg" alt="Cheetah!" /> <h3><a href="tel:9852908810">Contact : +91 9852908810 , </a> 9934102710</h3></span>
         <p>
           {isProduct
             ? "Browse the entire Kent-powered lineup with immersive, flip-ready cards that reveal specs, feature highlights, and transparent pricing."
