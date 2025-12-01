@@ -90,15 +90,15 @@ img {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
 /* nav-announce reverted to default text without pill styling */
 
 .brand-mark {
-  width: clamp(32px, 6vw, 48px);
-  height: clamp(32px, 6vw, 48px);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   display: inline-flex;
@@ -117,9 +117,7 @@ img {
   position: relative;
 }
 
-.nav-link { font-size: clamp(0.85rem, 2.4vw, 1rem); }
-.nav-announce { font-size: clamp(0.8rem, 2.3vw, 1rem); }
-.pin { width: clamp(14px, 3vw, 20px); height: clamp(18px, 3.4vw, 24px); }
+/* reverted responsive clamps for nav text and pin */
 
 .nav-link {
   color: var(--text);
@@ -409,28 +407,6 @@ h2 {
   margin-top: 4rem;
 }
 
-.contactn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.contactn img {
-  animation: callRing 1.8s ease-in-out infinite, callPop 5s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes callRing {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(55, 242, 255, 0.6)); }
-  50% { transform: scale(1.12); filter: drop-shadow(0 0 10px rgba(55, 242, 255, 0.9)); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(55, 242, 255, 0.6)); }
-}
-
-@keyframes callPop {
-  0%, 92% { transform: translateY(0) scale(1); }
-  96% { transform: translateY(-4px) scale(1.08); }
-  100% { transform: translateY(0) scale(1); }
-}
 
 
 .logo-marquee {
@@ -564,29 +540,6 @@ h2 {
 
 .product-card {
   position: relative;
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 16, 32, 0.6);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-}
-
-.price-tag {
-  font-weight: 700;
-  color: var(--accent-strong);
-}
-
-.btn.sm {
-  padding: 0.6rem 1rem;
-  font-size: 0.85rem;
-}
   perspective: 1200px;
   height: 360px;
 }
@@ -804,55 +757,6 @@ h2 {
   margin-top: 5rem;
 }
 
-.amc-section .price-notice {
-  margin-top: 0.5rem;
-  color: var(--accent-strong);
-  animation: pulseOrbit 2.2s ease-in-out infinite;
-}
-
-.amc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-.amc-card {
-  padding: 1.75rem;
-  border-radius: var(--radius-md);
-  background: rgba(0, 11, 26, 0.8);
-  border: 1px solid rgba(0, 192, 255, 0.15);
-  box-shadow: var(--shadow-soft);
-  min-height: 220px;
-  transition: transform var(--transition-medium), border var(--transition-fast);
-}
-
-.amc-card:hover { transform: translateY(-6px); border-color: var(--accent-strong); }
-.amc-card ul { margin: 0.75rem 0 1rem; padding-left: 1.2rem; }
-.amc-card li { margin: 0.25rem 0; }
-
-.contact-summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.summary-card {
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  background: rgba(0, 12, 28, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: var(--shadow-soft);
-}
-
-.map-preview { display: grid; place-items: center; position: relative; text-decoration: none; }
-.map-preview svg { width: 100%; height: auto; display: block; }
-.map-preview .map-bg { fill: rgba(0, 16, 32, 0.65); }
-.map-preview .map-shape { fill: rgba(0, 192, 255, 0.12); }
-.map-preview .map-text { fill: var(--text); font-size: 12px; }
-.map-preview .pin { fill: var(--accent-strong); animation: pinPulse 2.2s ease-in-out infinite; }
-.map-preview .pin-ring { fill: none; stroke: var(--accent-strong); stroke-width: 1.8; opacity: 0.8; animation: ringPulse 2.2s ease-in-out infinite; }
-.map-preview .map-cta { margin-top: 0.5rem; color: var(--accent-strong); }
 
 .service-grid {
   display: grid;
@@ -1138,3 +1042,4 @@ a {
   text-decoration: none;
   color: white;
 }
+
